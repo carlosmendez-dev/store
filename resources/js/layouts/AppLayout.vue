@@ -1,18 +1,24 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/app/AppSidebarLayout.vue';
-import type { BreadcrumbItemType } from '@/types';
-
-interface Props {
-    breadcrumbs?: BreadcrumbItemType[];
-}
-
-withDefaults(defineProps<Props>(), {
-    breadcrumbs: () => [],
-});
+import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <main>
+        <!--barra de navegacion-->
+        <nav class="navbar">
+            <Link href="/dashboard">STORE</Link>
+        
+            
+            <div class="hbox">
+                <Link href="/cart">Carrito</Link>
+                <Link href="/admin">Admin</Link>
+            </div>
+        </nav>
+
         <slot />
-    </AppLayout>
+
+        <footer class="footer">
+            <h6>© Carlos Chan</h6>
+        </footer>
+    </main>
 </template>
