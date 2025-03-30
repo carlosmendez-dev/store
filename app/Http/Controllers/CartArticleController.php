@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CartArticle;
 use Illuminate\Http\Request;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class CartArticleController extends Controller
 {
@@ -20,7 +22,14 @@ class CartArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cart = Cart::where("user_id",Auth::user()->id)->first();
+
+        $cart_article = new CartArticle();
+        $cart_article->cart_id = $cart->id;
+        $cart_article->article_id = $request->article_id;
+        $cart_article->quantity = 1;
+        $cart_article->save();
+
     }
 
     /**
@@ -36,7 +45,8 @@ class CartArticleController extends Controller
      */
     public function update(Request $request, CartArticle $cartArticle)
     {
-        //
+        $cartArticle->quantity = $request->quantity;
+        $cartArticle->save();
     }
 
     /**
@@ -44,6 +54,6 @@ class CartArticleController extends Controller
      */
     public function destroy(CartArticle $cartArticle)
     {
-        //
+        $cartArticle->delete();
     }
 }

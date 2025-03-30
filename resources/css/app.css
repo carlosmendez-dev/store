@@ -15,6 +15,38 @@
     @apply flex gap-2
 }
 
+.vbox {
+    @apply flex flex-col gap-2
+}
+
+.card {
+    @apply border shadow p-6 max-w-[300px]
+}
+
+.badge {
+    @apply bg-white text-blue-500 rounded-full text-xs flex justify-center items-center size-[16px]
+}
+
 .footer {
     @apply bg-slate-800 text-white p-6 flex justify-center items-center
+}
+
+.btn {
+    @apply px-4 py-2 text-center
+}
+
+.form-control {
+    @apply px-4 py-2 border bg-slate-50
+}
+
+.btn-primary {
+    @apply bg-blue-500 text-white
+}
+
+.btn-danger {
+    @apply bg-red-500 text-white
+}
+
+.flowbox {
+    @apply flex flex-wrap justify-center
 }

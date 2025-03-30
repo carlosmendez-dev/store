@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+// controladores
+use App\Http\Controllers\CartArticleController;
+
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
@@ -18,6 +21,9 @@ Route::get('cart', function () {
 Route::get('admin', function () {
     return Inertia::render('Admin');
 })->middleware(['auth', 'verified'])->name('admin');
+
+// API
+Route::apiResource("/cart-article",CartArticleController::class);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

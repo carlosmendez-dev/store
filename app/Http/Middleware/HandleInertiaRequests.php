@@ -6,9 +6,12 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
+use Illuminate\Support\Facades\Auth;
 
 // modelos
 use App\Models\Article;
+use App\Models\Cart;
+use App\Models\CartArticle;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -42,6 +45,8 @@ class HandleInertiaRequests extends Middleware
     {
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
+        $cart = Cart::where("user_id",Auth::user()->id)->first();
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
@@ -53,7 +58,8 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            "articles" => Article::all()
+            "articles" => Article::all(),
+            "cart_articles" => CartArticle::where("cart_id",$cart->id)->get()
         ];
     }
 }
