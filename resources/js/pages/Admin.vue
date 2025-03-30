@@ -8,6 +8,6 @@ import { Head } from '@inertiajs/vue3';
     <Head title="Dashboard" />
 
     <AppLayout>
-        Hola desde Dashboard
+        Hola desde Admin
     </AppLayout>
 </template>

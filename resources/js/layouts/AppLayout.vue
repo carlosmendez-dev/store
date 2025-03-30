@@ -3,19 +3,21 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <main>
+    <main class="flex flex-col h-screen">
         <!--barra de navegacion-->
         <nav class="navbar">
-            <Link href="/dashboard">STORE</Link>
+            <Link href="/dashboard"><i class="bi bi-bag-fill me-1"></i>STORE</Link>
         
             
             <div class="hbox">
-                <Link href="/cart">Carrito</Link>
-                <Link href="/admin">Admin</Link>
+                <Link class="nav-link" href="/cart"><i class="bi bi-cart me-1"></i> <span class="hidden sm:block">Carrito</span></Link>
+                <Link class="nav-link" href="/admin"><i class="bi bi-key me-1"></i> <span class="hidden sm:block">Admin</span></Link>
             </div>
         </nav>
 
-        <slot />
+        <section class="grow p-3">
+            <slot />
+        </section>
 
         <footer class="footer">
             <h6>© Carlos Chan</h6>
