@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
+
+const page = usePage();
 </script>
 
 <template>
@@ -11,7 +14,7 @@ import { Link } from '@inertiajs/vue3';
             
             <div class="hbox">
                 <Link class="nav-link" href="/cart"><i class="bi bi-cart me-1"></i> <span class="hidden sm:block">Carrito</span></Link>
-                <Link class="nav-link" href="/admin"><i class="bi bi-key me-1"></i> <span class="hidden sm:block">Admin</span></Link>
+                <Link class="nav-link" href="/admin"><i class="bi bi-key me-1" v-if="page.props.auth.user.is_admin==true"></i> <span class="hidden sm:block">Admin</span></Link>
             </div>
         </nav>
 
