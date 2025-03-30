@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
+// modelos
+use App\Models\Article;
+
 class HandleInertiaRequests extends Middleware
 {
     /**
@@ -50,6 +53,7 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            "articles" => Article::all()
         ];
     }
 }
