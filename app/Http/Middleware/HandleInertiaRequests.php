@@ -45,7 +45,11 @@ class HandleInertiaRequests extends Middleware
     {
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
-        $cart = Cart::where("user_id",Auth::user()->id)->first();
+        $cart_articles = [];
+        if (Auth::user()){
+            $cart = Cart::where("user_id",Auth::user()->id)->first();
+            $cart_articles = CartArticle::where("cart_id",$cart->id)->get();
+        }
 
         return [
             ...parent::share($request),
@@ -59,7 +63,7 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             "articles" => Article::all(),
-            "cart_articles" => CartArticle::where("cart_id",$cart->id)->get()
+            "cart_articles" => $cart_articles
         ];
     }
 }
